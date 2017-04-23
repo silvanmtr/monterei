@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutSite}">
+	
+<section layout:fragment="conteudo">
+	<div  th:each="noticia : ${pagina.conteudo}">	
+		<div class="container-fluid">
+			<div class="row noticias-home">
+				<div class="col-xs-4 col-md-3 img-noticia hidden-xs">
+			    <a th:href="@{/noticias/noticia/{codigo}(codigo=${noticia.codigo})}" class="thumbnail"> 
+			      <img th:src="@{http://localhost:8080/fotos/{codigo}(codigo=${noticia.foto})}" class="img-responsive"/>   
+			    </a>
+			    </div>
+		    	
+		    	<a th:href="@{/noticias/noticia/{codigo}(codigo=${noticia.codigo})}">		    
+			    	<div class="col-xs-12 col-md-6 col-sm-6 titulo-noticia">		    		
+			  			<h4 th:text="${noticia.titulo}"></h4>		  			
+			  		</div>
+			  		
+			  		<div class="col-xs-12 col-md-7 col-sm-6  texto-descricao-noticia">  
+						<span th:text="${noticia.descricao}"></span>
+			 	    </div>
+		 	    </a>
+		 	    
+	  		</div>			
+	 </div> 
+	 
+		
+	 	<!-- <div class="col-xs-4 col-md-3 img-noticia hidden-xs">
+		    <a href="#" class="thumbnail">    
+		    	<img th:src="@{http://localhost:8080/fotos/{codigo}(codigo=${noticia.foto})}" class="img-responsive"/>   
+		    </a>
+	  	</div>
+  
+  		<div class="col-xs-10 col-md-6 col-sm-6 titulo-noticia">
+  			<h2 th:text="${noticia.titulo}"></h2>
+  		</div>
+  
+  		<div class="col-xs-8 col-md-7 col-sm-6  texto-noticia">  
+			<span th:text="${noticia.descricao}"></span>
+ 	    </div> -->
+	</div>
+		<thm:pagination page="${pagina}"/>
+	<br/><br/><br/>
+	
+</section>
+
+
+<th:block layout:fragment="javascript-extra">
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var p = $(".item:first").addClass("active");
+			var olLi = $(".olLi:first").addClass("active");
+		}
+</script>
+</th:block >
+</html>

@@ -1,0 +1,15 @@
+CREATE TABLE noticia(
+  codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+  titulo VARCHAR(300) NOT NULL,
+  descricao TEXT NOT NULL,
+  texto LONGTEXT NOT NULL,
+  foto VARCHAR(100) NULL DEFAULT NULL,
+  content_type VARCHAR(150) NULL DEFAULT NULL,
+  codigo_menu BIGINT(20) NOT NULL,
+  codigo_carousel BIGINT(20) NULL DEFAULT 0,
+  FOREIGN KEY (codigo_menu) REFERENCES menu(codigo),
+  FOREIGN KEY (codigo_carousel) REFERENCES carousel(codigo)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:thm="http://archetype-project.com">
+	
+<body >
+<div class="container-fluid">
+	<div class="row">
+		<div class="navbar navbar-inverse " role="navigation" id="slide-nav" th:fragment="navbar">
+		   <div class="navbar-header2">
+		    <a class="navbar-toggle"> 
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		     </a>
+		    <a class="navbar-brand" th:href="@{/home}">Monte Rei</a>
+		   </div>
+		   <div id="slidemenu">
+		          
+		    <ul class="nav navbar-nav" th:each="menu : ${menus}">    
+			    <li thm:menu="@{~/menu.caminho.*}" class="li-menu" th:classappend="${menuAtivo} == ${menu.nome} ? active : ''">
+			     	 <a href="#" th:href="@{/{link}(link=${menu.caminho})}" 
+			     	      th:text="${menu.nome}"
+			     	      th:classappend="${menuAtivo} == ${menu.nome} ? active : ''">	     	 	
+			     	 </a>
+			     </li>
+		    </ul>
+		          
+		   </div>
+		  </div>
+	 </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutSite}">
+	
+<section layout:fragment="conteudo">
+	<div th:each="noticia : ${noticias}">
+	
+	<div class="container-fluid">
+		<div class="row">
+			<h2 th:text="${noticia.titulo}" class="titulo-noticia"></h2>
+			
+			<a th:href="@{/noticias/noticia/{codigo}(codigo=${noticia.codigo})}" style="vertical-align:middle"> 
+		    	<img th:src="@{http://localhost:8080/fotos/{codigo}(codigo=${noticia.foto})}" 
+		    	class="img-responsive img-noticia-link" alt="Imagem Responsiva" />   
+		  	</a>
+		  	
+		  	<div>
+		  		<p th:text="${noticia.texto}" class="texto-noticia"></p>
+		  	</div>
+		  	
+		</div>
+	
+	</div>
+		
+ </div>
+</section>
+
+
+<th:block layout:fragment="javascript-extra">
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var p = $(".item:first").addClass("active");
+			var olLi = $(".olLi:first").addClass("active");
+		}
+</script>
+</th:block >
+</html>

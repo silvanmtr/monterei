@@ -1,0 +1,7 @@
+CREATE TABLE carousel (
+    codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(200) NOT NULL,
+	descricao TEXT NOT NULL,
+	foto VARCHAR(100),
+	content_type VARCHAR(150)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

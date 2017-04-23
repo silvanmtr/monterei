@@ -1,0 +1,50 @@
+.rodape-site{
+    width:100%;
+    background-color: #1c1917; 
+    padding-bottom: 5%;
+    height: auto;
+}
+
+.rodape-detalhe-site{
+    width:100%;
+    background-color: #97989a;
+    text-align: center;
+}
+
+.rodape-margins{
+	margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.footer-sobre-o-site{	
+	float: left;
+}
+
+.footer-telefones-uteis{	
+	float: left;
+	text-align: justify;
+}
+.footer-desenvolvido-por{
+	float: right;
+	text-align: left;
+}
+.ul-sobre-o-site{
+	margin: 0;
+	padding: 0;
+}
+.li-sobre-o-site{
+	list-style-type:none;	
+	padding: 5px, 0, 5px, 0;
+}
+
+.li-sobre-o-site > a{
+	text-decoration: none;
+	color: #FFF;
+	padding: 5px, 0, 5px, 0;
+}
+.li-sobre-o-site > a:hover{
+	text-decoration: none;
+	color: #e52329;
+}
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/LayoutPadrao}"
+		xmlns:thm="http://archetype-project.com">
+
+<head>
+	<title>Cadastro de Notícia</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
+	
+	<link rel="stylesheet" th:href="@{/stylesheets/vendors/upload.min.css}"/>
+	<!-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script> -->
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-10">
+					<h1 th:if="${carousel.novo}">Cadastro de Carousel</h1>
+					<h1 th:unless="${carousel.novo}">Edição de Carousel- [[${carousel.titulo}]]</h1>
+				</div>
+				
+				<div class="col-xs-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/carousel}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<form method="POST" th:object="${carousel}" 
+				th:action="${carousel.novo} ? @{/carousel/novo} : @{/carousel/{codigo}(codigo=${carousel.codigo})}">
+			<thm:message/>
+			
+			<input type="hidden" th:field="*{codigo}"/>
+			
+			<div class="row">
+				<div class="form-group  col-sm-12  bw-required" thm:classforerror="titulo">
+					<label for="titulo" class="control-label">Titulo</label>
+					<input type="text" class="form-control" id="titulo" autofocus="autofocus" th:field="*{titulo}"/>
+				</div>
+				<!-- <div class="col-sm-3  form-group  bw-required" thm:classforerror="menu">
+					<label for="categoria" class="control-label">Categoria</label>
+					<div class="bw-field-action">
+						<select id="categoria" class="form-control" th:field="*{menu}">
+							<option value="">Selecione a Categoria</option>
+							<option th:each="menu : ${menus}" th:value="${menu.codigo}" th:text="${menu.nome}">Esporte</option>
+						</select>
+						
+						<div class="bw-field-action__icon">
+							<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoEstilo">
+								<i class="glyphicon  glyphicon-plus-sign  bw-glyphicon-large"></i>
+							</a>
+						</div>
+					</div>
+				</div> -->
+			</div>
+				
+			<div class="form-group  bw-required" thm:classforerror="descricao">
+				<label for="descricao" class="control-label">Descrição</label>
+				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
+			</div>			
+			
+			
+			
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<input type="hidden" th:field="*{foto}">
+					<input type="hidden" th:field="*{contentType}">
+					<input type="hidden" th:field="*{novaFoto}">
+					<input type="hidden" th:field="*{urlFoto}">
+				
+					<label class="control-label">Foto</label>
+					
+					<div class="js-container-foto-cerveja" th:attr="data-url-fotos=@{/fotos}">
+						<div id="upload-drop" class="bw-upload">
+							<img th:src="@{/images/mini-loading.gif}" class="js-img-loading  hidden"/>
+							<i class="glyphicon  glyphicon-cloud-upload"></i>
+							<span>Arraste a foto aqui ou </span>
+							<a class="bw-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>
+		<th:block th:replace="hbs/FotoCerveja"></th:block>
+	
+</section>
+
+<th:block layout:fragment="javascript-extra">
+
+	<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
+	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/javascripts/cerveja.upload-foto.js}"></script>
+	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+	<script>
+		$('.js-status').bootstrapSwitch();
+	</script>
+</th:block>
+</html>
