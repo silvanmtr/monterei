@@ -59,6 +59,33 @@
   				</div>
 			</div>
 			
+			<div class="row">
+				<div class="form-group  col-sm-2">
+					<a class="btn  btn-link  btn-xs" title="Excel" 
+					   th:href="@{/usuarios/excel}"> 
+					   <img th:src="@{/images/icon_excel.png}" class="img-responsive"/>
+					   <br/>
+					</a>
+				</div>
+				
+				<div class="form-group  col-sm-2">
+					<a class="btn  btn-link  btn-xs" title="PDF" 
+					   th:href="@{/usuarios/pdf}"> 
+					   <img th:src="@{/images/icon_pdf.png}" class="img-responsive"/>
+					   <br/>
+					</a>
+				</div>				
+				
+				<div class="form-group  col-sm-2">
+					<a class="btn  btn-link  btn-xs" title="Exportar em Lote" 
+					   th:href="@{/usuarios/download}"> 
+					   <img th:src="@{/images/exportar_em_lote.png}" class="img-responsive"/>
+					   <br/>
+					</a>
+				</div>
+				
+			</div>
+			
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
 		</form>
 		

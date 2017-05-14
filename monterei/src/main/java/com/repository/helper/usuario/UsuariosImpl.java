@@ -67,6 +67,19 @@ public class UsuariosImpl implements UsuariosQueries {
 		return new PageImpl<>(filtrados, pageable, total(filtro));
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	@Override
+	public List<Usuario> filtrar(UsuarioFilter filtro) {
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(Usuario.class);
+		
+		adicionarFiltro(filtro, criteria);
+		
+		List<Usuario> filtrados = criteria.list();
+		filtrados.forEach(u -> Hibernate.initialize(u.getGrupos()));
+		return filtrados;
+	}
+	
 	@Transactional(readOnly = true)
 	@Override
 	public Usuario buscarComGrupos(Long codigo) {

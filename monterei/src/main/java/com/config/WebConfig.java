@@ -23,6 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver;
 
+import com.report.resolver.CsvViewResolver;
+import com.report.resolver.ExcelViewResolver;
+import com.report.resolver.PdfViewResolver;
 import com.thymeleaf.AppDialect;
 
 @Configuration
@@ -79,6 +82,29 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	    
 	    return validatorFactoryBean;
 	}
+	
+	 @Bean
+	    public ViewResolver excelViewResolver() {
+	        return new ExcelViewResolver();
+	    }
+
+	    /*
+	     * Configure View resolver to provide Csv output using Super Csv library to
+	     * generate Csv output for an object content
+	     */
+	    @Bean
+	    public ViewResolver csvViewResolver() {
+	        return new CsvViewResolver();
+	    }
+
+	    /*
+	     * Configure View resolver to provide Pdf output using iText library to
+	     * generate pdf output for an object content
+	     */
+	    @Bean
+	    public ViewResolver pdfViewResolver() {
+	        return new PdfViewResolver();
+	    }
 
 	@Override
 	public Validator getValidator() {
