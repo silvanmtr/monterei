@@ -13,7 +13,9 @@ public interface UsuariosQueries {
 
 	public Optional<Usuario> porEmailEAtivo(String email);
 	
-	public List<String> permissoes(Usuario usuario);
+	public List<String> permissoesPorGrupo(Usuario usuario);
+	
+	public List<String> permissoesPorUsuario(Usuario usuario);
 	
 	public Page<Usuario> filtrar(UsuarioFilter filtro, Pageable pageable);
 	

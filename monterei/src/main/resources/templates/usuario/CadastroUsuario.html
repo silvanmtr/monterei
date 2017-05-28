@@ -17,8 +17,8 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<h1 th:if="${usuario.novo}">Cadastro de usuário</h1>
-					<h1 th:unless="${usuario.novo}">Edição de usuário - [[${usuario.nome}]]</h1>
+					<h1 th:if="${usuario.novo}" th:text="#{venda.cadastro.titulo}">Cadastro de usuário</h1>
+					<h1 th:unless="${usuario.novo}" th:text="#{venda.edicao.titulo(${usuario.nome})}">Edição de usuário - [[${usuario.nome}]]</h1>
 				</div>
 				
 				<div class="col-xs-2">
@@ -74,6 +74,14 @@
 					<div>
 						<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
 							data-on-text="Ativo" data-off-text="Inativo" th:field="*{ativo}"/>
+					</div>
+				</div>
+				
+				<div class="form-group  col-sm-3" th:if="${#authentication.principal.usuario.codigo != usuario.codigo}">
+					<label class="control-label">Permissão por:</label>
+					<div>
+						<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+							data-on-text="Usuário" data-off-text="Grupo" th:field="*{permissaoPorUsuario}"/>
 					</div>
 				</div>
 				

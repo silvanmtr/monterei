@@ -1,5 +1,6 @@
 package com.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,14 @@ public class AppUserDetailsService implements UserDetailsService {
 	private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 		
-		List<String> permissoes = usuarios.permissoes(usuario);
+		List<String> permissoes  = new ArrayList<String>();
+		
+		if(usuario.getPermissaoPorUsuario()){
+			 permissoes = usuarios.permissoesPorUsuario(usuario);
+		} else {
+			permissoes = usuarios.permissoesPorGrupo(usuario);
+		}
+		
 		permissoes.forEach(p -> authorities.add(new SimpleGrantedAuthority(p.toUpperCase())));
 		
 		return authorities;

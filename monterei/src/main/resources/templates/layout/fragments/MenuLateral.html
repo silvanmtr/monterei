@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:th="http://www.thymeleaf.org"
-		xmlns:thm="http://archetype-project.com">
+	xmlns:thm="http://archetype-project.com"		
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	
 <body>
 <aside class="aw-layout-sidebar  js-sidebar" th:fragment="layout-sidebar">
@@ -67,7 +68,7 @@
           			</a>
 
           			<ul class="aw-menu__list  aw-menu__list--sublist">
-			            <li class="aw-menu__item  aw-menu__item--link" thm:menu="@{/cidades.*}">
+			            <li class="aw-menu__item  aw-menu__item--link" thm:menu="@{/cidades.*}" sec:authorize-url="/cidades">
 			            	<a th:href="@{/cidades}">Cidades</a>
 			            </li>
 			            <li class="aw-menu__item  aw-menu__item--link" thm:menu="@{/clientes.*}">
@@ -91,6 +92,18 @@
           			<ul class="aw-menu__list  aw-menu__list--sublist">
 			            <li class="aw-menu__item  aw-menu__item--link" thm:menu="@{/relatorios.*}">
 			            	<a th:href="@{/relatorios/vendasEmitidas}">Vendas emitidas</a>
+			            </li>
+          			</ul>
+        		</li>        		
+        		<li class="aw-menu__item">
+          			<a href="#">
+            			<i class="fa  fa-fw  fa-unlock-alt"></i><span>Permissões</span>
+            			<i class="aw-menu__navigation-icon  fa"></i>
+          			</a>
+
+          			<ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link" thm:menu="@{/menusAplicacao.*}">
+			            	<a th:href="@{/menusAplicacao}">Permissão</a>
 			            </li>
           			</ul>
         		</li>

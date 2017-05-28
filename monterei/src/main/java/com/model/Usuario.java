@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotBlank(message = "Nome é obrigatório")
+	@NotBlank
 	private String nome;
 
 	@NotBlank(message = "E-mail é obrigatório")
@@ -61,6 +61,8 @@ public class Usuario implements Serializable {
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
+	private Boolean permissaoPorUsuario;
+	
 	@PreUpdate
 	private void preUpdate() {
 		this.confirmacaoSenha = senha;
@@ -108,6 +110,14 @@ public class Usuario implements Serializable {
 
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
+	}
+	
+	public Boolean getPermissaoPorUsuario() {
+		return permissaoPorUsuario;
+	}
+	
+	public void setPermissaoPorUsuario(Boolean permissaoPorUsuario) {
+		this.permissaoPorUsuario = permissaoPorUsuario;
 	}
 
 	public void setDataNascimento(LocalDate dataNascimento) {

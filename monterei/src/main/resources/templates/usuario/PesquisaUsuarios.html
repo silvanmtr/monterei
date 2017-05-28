@@ -113,7 +113,8 @@
 	                	<th>E-mail</th>
 	                	<th>Grupo</th>
 	                	<th>Status</th>
-	                 	<th class="table-col-acoes"></th>
+	                	<th>Permissão por</th>
+	                 	<th class="table-col-acoes col-lg-3">__________________________</th>
 					</tr>
 				</thead>
 			
@@ -137,8 +138,19 @@
 							<th:block th:if="${not usuario.ativo}">
 								<span class="label  label-danger">Inativo</span>
 							</th:block>
+						</td>						
+						<td>
+							<th:block th:if="${usuario.permissaoPorUsuario}">
+								<span class="label  label-success">Usuário</span>
+							</th:block>
+							<th:block th:if="${not usuario.permissaoPorUsuario}">
+								<span class="label  label-danger">Grupo</span>
+							</th:block>
 						</td>
 	                 	<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Parametros" th:href="@{/menusAplicacao/{codigo}(codigo=${usuario.codigo})}"> 
+								<i class="glyphicon glyphicon-cog"></i>
+							</a>
 							<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}"> 
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>

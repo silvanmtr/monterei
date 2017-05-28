@@ -46,11 +46,20 @@ public class UsuariosImpl implements UsuariosQueries {
 	}
 
 	@Override
-	public List<String> permissoes(Usuario usuario) {
+	public List<String> permissoesPorGrupo(Usuario usuario) {
 		return manager.createQuery(
 				"select distinct p.nome from Usuario u inner join u.grupos g inner join g.permissoes p where u = :usuario", String.class)
 				.setParameter("usuario", usuario)
 				.getResultList();
+	}	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> permissoesPorUsuario(Usuario usuario) {
+		 return manager.createNativeQuery(" SELECT DISTINCT(P.NOME) FROM USUARIO U "
+								+ " INNER JOIN USUARIO_PERMISSAO UP ON UP.CODIGO_USUARIO = U.CODIGO "
+								+ " INNER JOIN PERMISSAO P ON P.CODIGO = UP.CODIGO_PERMISSAO WHERE U.CODIGO = " + usuario.getCodigo())
+				 .getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
