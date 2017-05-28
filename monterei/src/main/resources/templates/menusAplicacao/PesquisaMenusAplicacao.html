@@ -72,17 +72,42 @@
 							</th:block>
 						</td>
 	                 	<td class="text-center">
-							<a class="btn  btn-link  btn-xs" title="Cadastrar" th:href="@{/menus/{codigo}(codigo=${menu.codigo})}"> 
-								<i class="glyphicon glyphicon-floppy-saved"></i>
+	                 	
+	                 	
+	                 	
+							<a class="btn  btn-link  btn-xs" title="Cadastrar" 
+th:href="@{/menusAplicacao/permissao/{codigo}/{permissaoPorUsuario}/{regra}(codigo=${codigo}, permissaoPorUsuario=${permissaoPorUsuario}, regra=|ROLE_CADASTRAR_${menu.nome}|)}"> 
+							
+								<span th:each="permissao : ${permissoes}">
+								<th:block th:if="${permissao} == |ROLE_CADASTRAR_${menu.nome}|">								
+										<i class="glyphicon glyphicon-floppy-saved" 
+										th:classappend="${permissao} == |ROLE_CADASTRAR_${menu.nome}| ? disabled : s "  ></i>
+								</th:block> 
+								</span>
+										<!-- <i class="glyphicon glyphicon-floppy-remove"></i> -->
 							</a>
-							<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/menus/{codigo}(codigo=${menu.codigo})}"> 
+							
+							
+							<!-- <a class="btn  btn-link  btn-xs" title="Visualizar" 
+th:href="@{/menusAplicacao/permissao/{codigo}/{permissaoPorUsuario}/{regra}(codigo=${codigo}, permissaoPorUsuario=${permissaoPorUsuario}, regra=|ROLE_PESQUISAR_${menu.nome}|)}"> 
+								<th:block th:if="${menu.nome}">								
+									<i class="glyphicon glyphicon-eye-open"></i>
+								</th:block>
+								
+								<th:block th:if="not ${menu.nome}">								
+									<i class="glyphicon glyphicon-eye-close"></i>
+								</th:block>
+								
+							</a> -->
+						
+							<!-- <a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/menus/{codigo}(codigo=${menu.codigo})}"> 
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
 							<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" title="Excluir" href="#" 
 									data:url="@{/menus/{codigo}(codigo=${menu.codigo})}"
 									data:objeto="${menu.nome}">
 								<i class="glyphicon glyphicon-remove"></i>
-							</a>
+							</a> -->
 						</td>
 	                </tr>
 	                
